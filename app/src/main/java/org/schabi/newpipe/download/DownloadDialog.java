@@ -716,7 +716,7 @@ public class DownloadDialog extends DialogFragment
         return wrappedAudioTracks.getTracksList().get(selectedAudioTrackIndex);
     }
 
-    private int getSubtitleIndexBy(@NonNull final List<SubtitlesStream> streams) {
+private int getSubtitleIndexBy(@NonNull final List<SubtitlesStream> streams) {
         final Localization preferredLocalization = NewPipe.getPreferredLocalization();
 
         int candidate = 0;

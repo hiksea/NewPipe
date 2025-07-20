@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">NewPipe x Ducdz</string>
     <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="no_player_found">No stream player found. Install VLC?</string>
@@ -862,4 +863,6 @@
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
     <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since NewPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from NewPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of NewPipe will not be able to import settings of exports from new versions anymore.</string>
+    <string name="speeding_playback_title">Long-press to speed playback</string>
+    <string name="speeding_playback_default_value">2.0x</string>
 </resources>

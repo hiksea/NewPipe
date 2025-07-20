@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
-        resValue "string", "app_name", "NewPipe"
+        resValue "string", "app_name", "NewPipe x Ducdz"
         minSdk 21
         targetSdk 33
         if (System.properties.containsKey('versionCodeOverride')) {
@@ -49,10 +49,10 @@ android {
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix ".debug"
-                resValue "string", "app_name", "NewPipe Debug"
+                resValue "string", "app_name", "NewPipe x Ducdz"
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
-                resValue "string", "app_name", "NewPipe " + workingBranch
+                resValue "string", "app_name", "NewPipe x Ducdz "
                 archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
             }
         }
@@ -60,7 +60,7 @@ android {
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
-                resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
+                resValue "string", "app_name", "NewPipe x Ducdz " + System.getProperty('packageSuffix')
                 archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
             }
             minifyEnabled true
@@ -214,7 +214,7 @@ dependencies {
     // the corresponding commit hash, since JitPack sometimes deletes artifacts.
     // If there’s already a git hash, just add more of it to the end (or remove a letter)
     // to cause jitpack to regenerate the artifact.
-    implementation 'com.github.TeamNewPipe.NewPipeExtractor:NewPipeExtractor:v0.24.6'
+    implementation 'com.github.ducdz2903.NewPipeExtractor:NewPipeExtractor:v0.24.6'
     implementation 'com.github.TeamNewPipe:NoNonsense-FilePicker:5.0.0'
 
 /** Checkstyle **/

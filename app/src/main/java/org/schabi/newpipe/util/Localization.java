@@ -100,10 +100,29 @@ public final class Localization {
         return BidiFormatter.getInstance().unicodeWrap(plainName);
     }
 
-    public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
+public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
             final Context context) {
-        return org.schabi.newpipe.extractor.localization.Localization
-                .fromLocale(getPreferredLocale(context));
+        final String contentLanguage = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.content_language_key),
+                        context.getString(R.string.default_localization_key));
+        try {
+            if (contentLanguage.equals(context.getString(R.string.default_localization_key))) {
+                return org.schabi.newpipe.extractor.localization.Localization
+                        .fromLocale(Locale.getDefault());
+            }
+            // Validate contentLanguage before passing
+            if (contentLanguage == null || contentLanguage.isEmpty()) {
+                throw new IllegalArgumentException("Invalid contentLanguage: " + contentLanguage);
+            }
+            return org.schabi.newpipe.extractor.localization.Localization
+                    .fromLocalizationCode(contentLanguage);
+        } catch (final Exception e) {
+            Log.e(TAG, "Error in getPreferredLocalization: " + e.getMessage(), e);
+            // Fallback to default locale
+            return org.schabi.newpipe.extractor.localization.Localization
+                    .fromLocale(Locale.getDefault());
+        }
     }
 
     public static ContentCountry getPreferredContentCountry(@NonNull final Context context) {

@@ -24,7 +24,38 @@ abstract class BasePlayerGestureListener(
     protected val player: Player = playerUi.player
     protected val binding: PlayerBinding = playerUi.binding
 
+    // Long press speeding variables
+    private val longPressHandler: Handler = Handler(Looper.getMainLooper())
+    private var longPressRunnable: Runnable? = null
+    private var isLongPressActivated = false
+
     override fun onTouch(v: View, event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                // Start debounce timer for long press speedup
+                longPressRunnable = Runnable {
+                    if (!player.getLongPressSpeedingEnabled()) {
+                        player.setLongPressSpeedingEnabled(true)
+                        player.setPlaybackSpeed(player.getPlaybackSpeed() * player.getLongPressSpeedingFactor())
+                        isLongPressActivated = true
+                    }
+                }
+                longPressHandler.postDelayed(longPressRunnable!!, LONG_PRESS_DEBOUNCE_DELAY)
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                // Cancel pending speedup if finger is lifted before debounce time
+                longPressRunnable?.let { runnable ->
+                    longPressHandler.removeCallbacks(runnable)
+                }
+
+                // If speedup was activated, restore normal speed
+                if (isLongPressActivated && player.getLongPressSpeedingEnabled()) {
+                    player.setLongPressSpeedingEnabled(false)
+                    player.setPlaybackSpeed(player.getPlaybackSpeed() / player.getLongPressSpeedingFactor())
+                    isLongPressActivated = false
+                }
+            }
+        }
         playerUi.gestureDetector.onTouchEvent(event)
         return false
     }
@@ -184,5 +215,6 @@ abstract class BasePlayerGestureListener(
 
         private const val DOUBLE_TAP = "doubleTap"
         private const val DOUBLE_TAP_DELAY = 550L
+        private const val LONG_PRESS_DEBOUNCE_DELAY = 1000L // 1 second debounce for speedup
     }
 }

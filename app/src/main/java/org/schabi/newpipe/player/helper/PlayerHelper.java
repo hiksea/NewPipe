@@ -131,7 +131,7 @@ public final class PlayerHelper {
         }
     }
 
-    @NonNull
+@NonNull
     public static String captionLanguageOf(@NonNull final Context context,
                                            @NonNull final SubtitlesStream subtitles) {
         final String displayName = subtitles.getDisplayLanguageName();

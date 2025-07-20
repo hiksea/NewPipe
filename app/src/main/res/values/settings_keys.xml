@@ -118,7 +118,7 @@
     </string-array>
 
     <string name="default_resolution_key">default_resolution</string>
-    <string name="default_resolution_value">720p60</string>
+    <string name="default_resolution_value">1080p60</string>
     <string name="show_higher_resolutions_key">show_higher_resolutions</string>
     <string name="default_popup_resolution_key">default_popup_resolution</string>
     <string name="default_popup_resolution_value">480p</string>
@@ -464,7 +464,7 @@
 
     <!-- Preferred action on open (open from external app) -->
     <string name="preferred_open_action_key">preferred_open_action_key</string>
-    <string name="preferred_open_action_default">@string/always_ask_open_action_key</string>
+    <string name="preferred_open_action_default">@string/video_player_key</string>
     <string name="preferred_open_action_last_selected_key">preferred_open_action_last_selected</string>
 
     <string name="show_info_key">show_info</string>
@@ -1469,5 +1469,28 @@
         <item>@string/image_quality_low_key</item>
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
+    </string-array>
+
+    <!-- Speeding playback settings -->
+    <string name="speeding_playback_key">speeding_playback_key</string>
+    <string-array name="speeding_playback_description">
+        <item>1.25x</item>
+        <item>1.5x</item>
+        <item>1.75x</item>
+        <item>2x</item>
+        <item>2.5x</item>
+        <item>3x</item>
+        <item>3.5x</item>
+        <item>4x</item>
+    </string-array>
+    <string-array name="speeding_playback_value">
+        <item>1.25</item>
+        <item>1.5</item>
+        <item>1.75</item>
+        <item>2.0</item>
+        <item>2.5</item>
+        <item>3.0</item>
+        <item>3.5</item>
+        <item>4.0</item>
     </string-array>
 </resources>

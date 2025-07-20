@@ -265,6 +265,12 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     private final HistoryRecordManager recordManager;
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Long press speeding
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private boolean longPressSpeedingEnabled = false;
+    // Note: longPressSpeedingFactor is loaded from settings when needed
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -2359,6 +2365,31 @@ public final class Player implements PlaybackListener, Listener {
                 .findFirst()
                 // No video renderer index with at least one track found: return unavailable index
                 .orElse(RENDERER_UNAVAILABLE);
-    }
-    //endregion
+   }
+
+   /*//////////////////////////////////////////////////////////////////////////
+   // Long press speeding methods
+   //////////////////////////////////////////////////////////////////////////*/
+
+   public boolean getLongPressSpeedingEnabled() {
+       return longPressSpeedingEnabled;
+   }
+
+   public void setLongPressSpeedingEnabled(final boolean enabled) {
+       this.longPressSpeedingEnabled = enabled;
+   }
+
+   public float getLongPressSpeedingFactor() {
+       // Load from settings only when needed
+       final String speedingValue = prefs.getString(
+           context.getString(R.string.speeding_playback_key),
+           "2.0"
+       );
+       try {
+           return Float.parseFloat(speedingValue);
+       } catch (final NumberFormatException e) {
+           return 2.0f; // fallback to default
+       }
+   }
+   //endregion
 }
